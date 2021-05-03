@@ -1,0 +1,4 @@
+rootProject.name = 'miaotech-dubbo-demo'
+include 'miaotech-api'
+include 'miaotech-provider'
+include 'miaotech-web'

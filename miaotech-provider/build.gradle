@@ -1,0 +1,52 @@
+plugins {
+    id 'org.springframework.boot' version "${springBootVersion}"
+    id 'io.spring.dependency-management' version "${springDependency}"
+    id 'java'
+}
+
+configurations {
+    developmentOnly
+    runtimeClasspath {
+        extendsFrom developmentOnly
+    }
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+dependencies {
+//  implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery'
+    implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-config'
+//   implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-seata'
+//   implementation 'com.alibaba.cloud:spring-cloud-starter-stream-rocketmq'
+    implementation 'com.alibaba.cloud:spring-cloud-starter-dubbo'
+
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    implementation "com.baomidou:mybatis-plus-boot-starter:${mybatisPlusVersion}"
+    implementation "com.baomidou:mybatis-plus-boot-starter:${mybatisPlusVersion}"
+    implementation "org.mybatis.spring.boot:mybatis-spring-boot-starter:${mybatisVersion}"
+    runtimeOnly 'mysql:mysql-connector-java'
+
+    implementation "net.sf.dozer:dozer:${dozerVersion}"
+    implementation "net.sf.dozer:dozer-spring:${dozerVersion}"
+
+    implementation project(":miaotech-api")
+
+    compile('ch.qos.logback:logback-classic:1.2.3') {
+        exclude group: 'org.slf4j', module: 'slf4j-api' //by both name and group
+    }
+
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "com.alibaba.cloud:spring-cloud-alibaba-dependencies:${springCloudAlibabaVersion}"
+    }
+}
+//
+//sourceSets {
+//    main.java.srcDirs += "build/generated/sources/annotationProcessor/java/main"
+//    test.java.srcDirs += "build/generated/sources/annotationProcessor/java/test"
+//}
