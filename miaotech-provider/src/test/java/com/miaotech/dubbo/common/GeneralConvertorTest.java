@@ -2,7 +2,7 @@ package com.miaotech.dubbo.common;
 
 import com.alibaba.fastjson.JSON;
 import com.miaotech.api.dto.UserDTO;
-import com.miaotech.dubbo.ApplicationTest;
+import com.miaotech.common.converter.GeneralConvertor;
 import com.miaotech.dubbo.BaseTest;
 import com.miaotech.dubbo.domain.entity.User;
 import org.assertj.core.api.Assertions;
@@ -17,7 +17,7 @@ public class GeneralConvertorTest extends BaseTest {
     User user = null;
 
     @Autowired
-    com.miaotech.dubbo.common.utils.GeneralConvertor convertor;
+    GeneralConvertor convertor;
 
     /**
      * 模拟从数据库中查出user对象

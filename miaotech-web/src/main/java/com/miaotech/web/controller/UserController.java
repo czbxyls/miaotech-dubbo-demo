@@ -3,6 +3,7 @@ package com.miaotech.web.controller;
 import com.alibaba.fastjson.JSON;
 import com.miaotech.api.dto.UserDTO;
 import com.miaotech.api.service.UserFacadeService;
+import com.miaotech.web.ResponseExceptionAdvice;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/user")
 @Slf4j
-public class UserController {
+public class UserController  {
 
     @DubboReference
     private UserFacadeService userFacadeService;

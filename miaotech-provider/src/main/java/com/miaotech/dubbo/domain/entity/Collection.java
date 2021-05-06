@@ -17,4 +17,6 @@ public class Collection extends BaseEntity {
 
     private String url;
 
+    private int viewCount;
+
 }

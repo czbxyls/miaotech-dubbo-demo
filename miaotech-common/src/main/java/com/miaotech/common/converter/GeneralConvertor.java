@@ -1,4 +1,4 @@
-package com.miaotech.dubbo.common.utils;
+package com.miaotech.common.converter;
 
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;

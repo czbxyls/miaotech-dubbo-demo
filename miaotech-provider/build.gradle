@@ -1,6 +1,6 @@
 plugins {
     id 'org.springframework.boot' version "${springBootVersion}"
-    id 'io.spring.dependency-management' version "${springDependency}"
+    id 'io.spring.dependency-management' version "${springDependencyVersion}"
     id 'java'
 }
 
@@ -32,12 +32,16 @@ dependencies {
     implementation "net.sf.dozer:dozer:${dozerVersion}"
     implementation "net.sf.dozer:dozer-spring:${dozerVersion}"
 
+    implementation project(":miaotech-common")
     implementation project(":miaotech-api")
 
-    compile('ch.qos.logback:logback-classic:1.2.3') {
+    compile("ch.qos.logback:logback-classic:${logbackVersion}") {
         exclude group: 'org.slf4j', module: 'slf4j-api' //by both name and group
     }
 
+    implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-sentinel'
+    implementation 'com.alibaba.csp:sentinel-apache-dubbo-adapter'
+    implementation "com.alibaba.csp:sentinel-transport-simple-http:${sentinelVersion}"
 }
 
 dependencyManagement {

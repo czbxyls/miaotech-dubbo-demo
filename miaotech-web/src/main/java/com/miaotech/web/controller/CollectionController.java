@@ -1,10 +1,12 @@
 package com.miaotech.web.controller;
 
+import com.miaotech.api.dto.HotCollectionDTO;
 import com.miaotech.api.service.CollectionFacadeService;
 import org.apache.dubbo.config.annotation.DubboReference;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/collect")
@@ -23,4 +25,8 @@ public class CollectionController {
         return collectionFacadeService.getMaxCollectionLimit();
     }
 
+    @RequestMapping("getHotCollections")
+    public List<HotCollectionDTO> getHotCollections() {
+        return collectionFacadeService.getHotCollections();
+    }
 }

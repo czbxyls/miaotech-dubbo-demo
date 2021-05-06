@@ -7,7 +7,6 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.dozer.Mapping;
 
-import java.io.Serializable;
 import java.util.Date;
 
 @Data

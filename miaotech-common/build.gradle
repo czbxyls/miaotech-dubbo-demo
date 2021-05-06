@@ -1,0 +1,10 @@
+plugins {
+    id 'java'
+}
+
+dependencies {
+    implementation "org.apache.dubbo:dubbo:${dubboVersion}"
+
+    implementation "net.sf.dozer:dozer:${dozerVersion}"
+    implementation "net.sf.dozer:dozer-spring:${dozerVersion}"
+}

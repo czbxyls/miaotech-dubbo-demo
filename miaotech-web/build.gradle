@@ -1,6 +1,6 @@
 plugins {
     id 'org.springframework.boot' version "${springBootVersion}"
-    id 'io.spring.dependency-management' version "${springDependency}"
+    id 'io.spring.dependency-management' version "${springDependencyVersion}"
     id 'java'
 }
 
@@ -26,5 +26,8 @@ dependencies {
     implementation "org.apache.dubbo:dubbo:${dubboVersion}"
     implementation "com.alibaba.nacos:nacos-client:${nacosVersion}"
 
+    compile project(":miaotech-common")
     compile project(":miaotech-api")
+
+
 }
