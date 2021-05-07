@@ -1,4 +1,4 @@
-package com.miaotech.dubbo.infra.repo.mapper;
+package com.miaotech.dubbo.infra.db.mapper;
 
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;

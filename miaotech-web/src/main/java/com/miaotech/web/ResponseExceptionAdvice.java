@@ -25,7 +25,7 @@ public class ResponseExceptionAdvice {
             MsgException baseException = (MsgException) e;
             return ApiResultUtil.error(baseException);
         } else {
-            log.error("系统异常: {}", e);
+            log.error("系统异常: ", e);
             return ApiResultUtil.error(ResultEnum.UNKNOWN_ERROR);
         }
     }

@@ -1,11 +1,11 @@
-package com.miaotech.dubbo.infra.repo.impl;
+package com.miaotech.dubbo.infra.db.impl;
 
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.miaotech.dubbo.domain.entity.User;
 import com.miaotech.dubbo.domain.repo.UserRepository;
-import com.miaotech.dubbo.infra.repo.mapper.UserMapper;
+import com.miaotech.dubbo.infra.db.mapper.UserMapper;
 import org.springframework.stereotype.Repository;
 
 @Repository

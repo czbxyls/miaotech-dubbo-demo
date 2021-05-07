@@ -1,10 +1,10 @@
 package com.miaotech.dubbo.app;
 
-import com.miaotech.dubbo.domain.entity.Collection;
+import com.miaotech.dubbo.domain.valueobject.HotCollection;
 
 import java.util.List;
 
 public interface CollectionService {
 
-    List<Collection> getHotCollections(int size);
+    List<HotCollection> getHotCollections(int size);
 }
