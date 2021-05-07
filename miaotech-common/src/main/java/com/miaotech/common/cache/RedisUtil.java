@@ -1,4 +1,4 @@
-package com.miaotech.dubbo.infra.cache;
+package com.miaotech.common.cache;
 
 import java.util.List;
 import java.util.Map;
@@ -17,9 +17,10 @@ import org.springframework.util.CollectionUtils;
  */
 
 @Component
-public final class RedisUtil {
+public class RedisUtil {
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;
+
     // =============================common============================
     /**
      * 指定缓存失效时间
@@ -117,6 +118,23 @@ public final class RedisUtil {
             return false;
         }
     }
+
+    /**
+     * 如果已经存在返回false，否则返回true
+     *
+     * @param key
+     * @param value
+     * @return
+     */
+    public Boolean setNx(String key, Object value, long expireTime) {
+
+        if (key == null || value == null) {
+            return false;
+        }
+        return redisTemplate.opsForValue().setIfAbsent(key, value, expireTime, TimeUnit.SECONDS);
+    }
+
+
     /**
      * 递增
      * @param key 键

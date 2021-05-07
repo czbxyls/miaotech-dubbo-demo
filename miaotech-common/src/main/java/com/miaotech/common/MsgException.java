@@ -18,6 +18,11 @@ public class MsgException extends RuntimeException {
         this.code = code;
     }
 
+    public MsgException(int code, String message, Throwable throwable) {
+        super(message, throwable);
+        this.code = code;
+    }
+
     public MsgException(Throwable cause) {
         super(cause);
         this.code = ResultEnum.ERROR.getCode();

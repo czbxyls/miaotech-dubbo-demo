@@ -15,7 +15,6 @@ configurations {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
     implementation 'org.springframework.boot:spring-boot-starter-jdbc'
     implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery'
     implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-config'
@@ -43,7 +42,8 @@ dependencies {
     implementation 'com.alibaba.csp:sentinel-apache-dubbo-adapter'
     implementation "com.alibaba.csp:sentinel-transport-simple-http:${sentinelVersion}"
     implementation "com.alibaba.csp:sentinel-datasource-nacos:${sentinelVersion}"
-    implementation "org.apache.commons:commons-pool2"
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+
 }
 
 dependencyManagement {
