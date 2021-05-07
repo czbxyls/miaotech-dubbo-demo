@@ -1,20 +1,22 @@
-package com.miaotech.common.idempotent.util;
+package com.miaotech.common.utils;
 
 import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.springframework.context.annotation.Configuration;
 
 import java.lang.reflect.Method;
 
 @Slf4j
-public class IdempotentKeyGenerator {
+@Configuration
+public class MKeyGenerator {
 
     /**
      * Generate key based on {method name + parameter list} and md5 conversion
      */
-    public String generate(Class klass, Method method, Object... args) {
-        String prefix = klass.toString() + "." + method.toString();
-        StringBuilder sb = new StringBuilder(prefix);
+    public String generate(Method method, Object... args) {
+        String prefix = method.getDeclaringClass().getSimpleName() + "." + method.getName();
+        StringBuilder sb = new StringBuilder(method.toString());
         for (Object arg : args) {
             sb.append(toString(arg));
         }

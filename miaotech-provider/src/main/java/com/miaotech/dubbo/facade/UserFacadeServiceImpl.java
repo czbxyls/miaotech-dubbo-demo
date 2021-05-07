@@ -2,6 +2,7 @@ package com.miaotech.dubbo.facade;
 
 import com.miaotech.api.dto.UserDTO;
 import com.miaotech.api.service.UserFacadeService;
+import com.miaotech.common.dlock.DLock;
 import com.miaotech.common.idempotent.Idempotent;
 import com.miaotech.dubbo.app.UserService;
 import com.miaotech.common.converter.GeneralConvertor;
@@ -20,9 +21,20 @@ public class UserFacadeServiceImpl implements UserFacadeService {
     GeneralConvertor generalConvertor;
 
     @Override
-    @Idempotent(key = "#userId", ttl = 100, info = "这只是用来测试Idempotent：请勿重复查询")
+    @Idempotent(timeout = 20, info = "这只是用来测试Idempotent：请勿重复查询")
     public UserDTO find(Integer userId) {
         log.info("find userId {}", userId);
         return generalConvertor.convertor(userService.findUser(userId), UserDTO.class);
+    }
+
+    @Override
+    @DLock(group = "user", key = "#userDTO.phone")
+    public void register(UserDTO userDTO) {
+        try {
+            log.info("模拟用户注册，耗时工作");
+            Thread.sleep(3000);
+        } catch (InterruptedException ex) {
+            log.error("interrupted! ", ex);
+        }
     }
 }

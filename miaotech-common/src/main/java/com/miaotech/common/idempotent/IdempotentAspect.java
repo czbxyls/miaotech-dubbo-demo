@@ -1,8 +1,10 @@
 package com.miaotech.common.idempotent;
 
+import com.miaotech.common.MsgException;
 import com.miaotech.common.cache.RedisUtil;
-import com.miaotech.common.idempotent.util.IdempotentKeyResolver;
-import com.miaotech.common.idempotent.util.IdempotentKeyGenerator;
+import com.miaotech.common.result.ResultEnum;
+import com.miaotech.common.utils.MKeyResolver;
+import com.miaotech.common.utils.MKeyGenerator;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
@@ -42,10 +44,10 @@ public class IdempotentAspect {
     private RedisUtil redisUtil;
 
     @Autowired
-    private IdempotentKeyResolver idempotentKeyResolver;
+    private MKeyResolver mKeyResolver;
 
     @Autowired
-    private IdempotentKeyGenerator idempotentKeyGenerator;
+    private MKeyGenerator mKeyGenerator;
 
     @Pointcut("@annotation(com.miaotech.common.idempotent.Idempotent)")
     public void pointCut() {
@@ -63,15 +65,15 @@ public class IdempotentAspect {
         String key;
         Class klass = signature.getClass();
         // 若没有配置 幂等 标识编号，则使用 类名 + 方法名 + 参数列表作为区分
-        if (!StringUtils.hasLength(idempotent.key())) {
-            key = String.format(KEY_TEMPLATE, idempotentKeyGenerator.generate(klass, method, joinPoint.getArgs()));
+        if (StringUtils.isEmpty(idempotent.key())) {
+            key = String.format(KEY_TEMPLATE, mKeyGenerator.generate(method, joinPoint.getArgs()));
         }
         else {
             // 使用jstl 规则区分
-            key = String.format(KEY_TEMPLATE, idempotentKeyResolver.resolver(idempotent, joinPoint));
+            key = String.format(KEY_TEMPLATE, mKeyResolver.resolver(idempotent.key(), method, joinPoint.getArgs()));
         }
 
-        long ttl = idempotent.ttl();
+        long ttl = idempotent.timeout();
         String info = idempotent.info();
         boolean isAutoDel = idempotent.isAutoDel();
 
@@ -80,7 +82,7 @@ public class IdempotentAspect {
         Boolean flag = redisUtil.setNx(key, value, ttl);
 
         if(!flag) {
-            throw new IdempotentException("[idempotent]:" + info);
+            throw MsgException.newMessageException(ResultEnum.REPEAT_ERROR.getCode(), "[idempotent]:" + info);
         }
 
         Map<String, Object> map = THREAD_CACHE.get();

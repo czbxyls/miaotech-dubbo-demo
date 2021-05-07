@@ -1,9 +1,11 @@
 package com.miaotech.web;
 
+import com.alibaba.fastjson.JSON;
 import com.miaotech.common.result.ApiResult;
 import com.miaotech.common.result.ApiResultUtil;
 import com.miaotech.web.common.WebConfig;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
@@ -32,8 +34,8 @@ public class ResponseSupportAdvice implements ResponseBodyAdvice {
                                   MediaType mediaType, Class aClass,
                                   ServerHttpRequest serverHttpRequest,
                                   ServerHttpResponse serverHttpResponse) {
-        log.info("return value: {}", o.toString());
-        if(o instanceof ApiResult) return o;
+        log.info("return value: {}", JSON.toJSONString(o));
+        if(o != null && o instanceof ApiResult) return o;
         return ApiResultUtil.success(o);
     }
 }

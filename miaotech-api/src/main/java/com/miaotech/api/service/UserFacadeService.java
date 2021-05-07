@@ -10,4 +10,11 @@ public interface UserFacadeService {
      * @return
      */
     UserDTO find(Integer userId);
+
+
+    /**
+     * 注册一个用户
+     * @param userDTO
+     */
+    void register(UserDTO userDTO);
 }

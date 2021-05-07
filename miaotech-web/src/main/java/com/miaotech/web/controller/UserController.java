@@ -7,6 +7,7 @@ import com.miaotech.web.ResponseExceptionAdvice;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,6 +24,12 @@ public class UserController  {
         UserDTO userDTO = userFacadeService.find(userId);
         log.info("user={}", JSON.toJSONString(userDTO));
         return userDTO;
+    }
+
+    @PostMapping("register")
+    public void register(UserDTO user) {
+        log.info("register userDTO={}", user);
+        userFacadeService.register(user);
     }
 
     @RequestMapping("echo/{text}")

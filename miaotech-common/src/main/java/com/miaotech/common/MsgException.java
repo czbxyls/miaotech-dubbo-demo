@@ -2,7 +2,7 @@ package com.miaotech.common;
 
 import com.miaotech.common.result.ResultEnum;
 
-public class MsgException extends RuntimeException {
+public final class MsgException extends RuntimeException {
 
     private static final long serialVersionUID = -102324565904130269L;
 
@@ -45,15 +45,15 @@ public class MsgException extends RuntimeException {
         return newMessageException(ResultEnum.ERROR.getCode(), message);
     }
 
-    public static MsgException newMessageException(int code, String message) {
+    public static final MsgException newMessageException(int code, String message) {
         return new MsgException(code, message);
     }
 
-    public static MsgException newMessageException(ResultEnum resultEnum) {
+    public static final MsgException newMessageException(ResultEnum resultEnum) {
         return new MsgException(resultEnum);
     }
 
-    public static MsgException newMessageException(Exception e) {
+    public static final MsgException newMessageException(Exception e) {
         return new MsgException(e);
     }
 }
