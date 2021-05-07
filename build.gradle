@@ -58,6 +58,7 @@ subprojects {
 
         testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.3'
         testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.6.3'
+        testImplementation('org.junit.jupiter:junit-jupiter:5.6.3')
 
         annotationProcessor 'org.projectlombok:lombok:1.18.16'
         compileOnly 'org.projectlombok:lombok:1.18.16'
@@ -65,6 +66,7 @@ subprojects {
         testImplementation('org.springframework.boot:spring-boot-starter-test') {
             exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
         }
+
     }
 
     configurations {

@@ -24,7 +24,7 @@ public class GeneralConvertorTest extends BaseTest {
      */
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         user  = new User(1, "hello", "", "15899000000",
                 "陈hello", 18, "test@163.com", new Date());
     }
