@@ -3,6 +3,7 @@ package com.miaotech.dubbo.common;
 import com.alibaba.fastjson.JSON;
 import com.miaotech.api.dto.UserDTO;
 import com.miaotech.common.converter.GeneralConvertor;
+import com.miaotech.common.utils.TimeUtils;
 import com.miaotech.dubbo.BaseTest;
 import com.miaotech.dubbo.domain.entity.User;
 import org.assertj.core.api.Assertions;
@@ -26,7 +27,7 @@ public class GeneralConvertorTest extends BaseTest {
     @BeforeEach
     public void setUp() {
         user  = new User(1, "hello", "", "15899000000",
-                "陈hello", 18, "test@163.com", new Date());
+                "陈hello", TimeUtils.yyyyMMdd("2000-10-17"), "test@163.com", new Date());
     }
 
     /**

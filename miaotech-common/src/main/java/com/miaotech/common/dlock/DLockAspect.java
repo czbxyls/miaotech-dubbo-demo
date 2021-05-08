@@ -1,13 +1,11 @@
 package com.miaotech.common.dlock;
 
 import com.miaotech.common.MsgException;
-import com.miaotech.common.idempotent.Idempotent;
 import com.miaotech.common.result.ResultEnum;
-import com.miaotech.common.utils.AspectUtil;
-import com.miaotech.common.utils.MKeyGenerator;
-import com.miaotech.common.utils.MKeyResolver;
+import com.miaotech.common.utils.AspectUtils;
+import com.miaotech.common.aspect.AopKeyGenerator;
+import com.miaotech.common.aspect.AopKeyResolver;
 import lombok.extern.slf4j.Slf4j;
-import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -38,10 +36,10 @@ public class DLockAspect {
     private RedisLockRegistry redisLockRegistry;
 
     @Autowired
-    private MKeyResolver mKeyResolver;
+    private AopKeyResolver aopKeyResolver;
 
     @Autowired
-    private MKeyGenerator mKeyGenerator;
+    private AopKeyGenerator aopKeyGenerator;
 
     @Pointcut("@annotation(com.miaotech.common.dlock.DLock)")
     public void pointCut() {
@@ -54,7 +52,7 @@ public class DLockAspect {
         if (!method.isAnnotationPresent(DLock.class)) {
             return;
         }
-        method = AspectUtil.getMethod(joinPoint);
+        method = AspectUtils.getMethod(joinPoint);
 
         DLock dlock = method.getAnnotation(DLock.class);
 
@@ -63,11 +61,11 @@ public class DLockAspect {
 
         if (!StringUtils.hasLength(dlock.key())) {
             // 若没有配置标识编号，则使用 类名 + 方法名 + 参数列表作为区分
-            key = String.format(KEY_TEMPLATE, group, mKeyGenerator.generate(method, joinPoint.getArgs()));
+            key = String.format(KEY_TEMPLATE, group, aopKeyGenerator.generate(method, joinPoint.getArgs()));
         }
         else {
             // 使用jstl 规则区分
-            key = String.format(KEY_TEMPLATE, group, mKeyResolver.resolver(dlock.key(), method, joinPoint.getArgs()));
+            key = String.format(KEY_TEMPLATE, group, aopKeyResolver.resolver(dlock.key(), method, joinPoint.getArgs()));
         }
 
         long timeout = dlock.timeout();

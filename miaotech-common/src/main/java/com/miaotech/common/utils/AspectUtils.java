@@ -5,8 +5,7 @@ import org.aspectj.lang.reflect.MethodSignature;
 
 import java.lang.reflect.Method;
 
-public class AspectUtil {
-
+public class AspectUtils {
 
     /**
      * 根据切点解析方法信息

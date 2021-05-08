@@ -7,13 +7,33 @@ import com.miaotech.common.result.ResultEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.remoting.TimeoutException;
 import org.apache.dubbo.rpc.RpcException;
-import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.validation.BindException;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @RestControllerAdvice
 public class ResponseExceptionAdvice {
+
+    @ExceptionHandler({MsgException.class})
+    public Object exceptionHandler(MsgException e) {
+        log.info("处理正常业务异常！");
+        return ApiResultUtil.error(e);
+    }
+
+    @ExceptionHandler({BindException.class})
+    public Object exceptionHandler(BindException e) {
+        log.error("请求参数异常: ", e);
+        List<String> violations = e.
+                getBindingResult().getFieldErrors().stream().
+                map(FieldError::getDefaultMessage).
+                collect(Collectors.toList());
+        return ApiResultUtil.error(ResultEnum.VALIDATOR_ERROR, violations);
+    }
 
     /**
      * 统一异常处理
@@ -22,12 +42,7 @@ public class ResponseExceptionAdvice {
      */
     @ExceptionHandler()
     public Object exceptionHandler(Exception e) {
-        if (e instanceof MsgException) {
-            //全局基类自定义异常,返回{code,msg}
-            MsgException baseException = (MsgException) e;
-            return ApiResultUtil.error(baseException);
-        } else if(e instanceof RpcException) {
-            log.error("请求服务超时异常: ", e);
+        if(e instanceof RpcException) {
             return ApiResultUtil.error(ResultEnum.INTERNAL_ERROR);
         } else {
             log.error("系统未知异常: ", e);

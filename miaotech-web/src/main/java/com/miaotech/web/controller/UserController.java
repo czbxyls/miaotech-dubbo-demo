@@ -2,10 +2,12 @@ package com.miaotech.web.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.miaotech.api.dto.UserDTO;
+import com.miaotech.api.dto.UserRegisterDTO;
 import com.miaotech.api.service.UserFacadeService;
 import com.miaotech.web.ResponseExceptionAdvice;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboReference;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,7 +29,7 @@ public class UserController  {
     }
 
     @PostMapping("register")
-    public void register(UserDTO user) {
+    public void register(@Validated UserRegisterDTO user) {
         log.info("register userDTO={}", user);
         userFacadeService.register(user);
     }

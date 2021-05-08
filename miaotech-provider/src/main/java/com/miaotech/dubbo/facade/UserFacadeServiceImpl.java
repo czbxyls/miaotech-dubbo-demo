@@ -1,11 +1,12 @@
 package com.miaotech.dubbo.facade;
 
 import com.miaotech.api.dto.UserDTO;
+import com.miaotech.api.dto.UserRegisterDTO;
 import com.miaotech.api.service.UserFacadeService;
+import com.miaotech.common.converter.GeneralConvertor;
 import com.miaotech.common.dlock.DLock;
 import com.miaotech.common.idempotent.Idempotent;
 import com.miaotech.dubbo.app.UserService;
-import com.miaotech.common.converter.GeneralConvertor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ public class UserFacadeServiceImpl implements UserFacadeService {
 
     @Override
     @DLock(group = "user", key = "#userDTO.phone")
-    public void register(UserDTO userDTO) {
+    public void register(UserRegisterDTO userDTO) {
         try {
             log.info("模拟用户注册，耗时工作");
             Thread.sleep(3000);

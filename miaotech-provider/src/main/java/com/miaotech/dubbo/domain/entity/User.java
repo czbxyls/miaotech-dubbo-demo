@@ -27,9 +27,9 @@ public class User extends BaseEntity {
 
     private String phone;
 
-    private String realname;
+    private String nickname;
 
-    private Integer age;
+    private Date birth;
 
     private String email;
 

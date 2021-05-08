@@ -30,6 +30,12 @@ public class ApiResultUtil {
         return new ApiResult().error(code, msg);
     }
 
+    public static ApiResult error(ResultEnum resultEnum, Object data){
+        ApiResult result = new ApiResult().error(resultEnum.getCode(), resultEnum.getMsg());
+        result.setResult(data);
+        return result;
+    }
+
     public static ApiResult error(String msg){
         return new ApiResult().error(msg);
     }

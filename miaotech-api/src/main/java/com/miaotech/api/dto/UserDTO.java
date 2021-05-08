@@ -15,9 +15,9 @@ public class UserDTO implements java.io.Serializable {
 
     private String phone;
 
-    private String realname;
+    private String nickname;
 
-    private Integer age;
+    private Date birth;
 
     private String email;
 

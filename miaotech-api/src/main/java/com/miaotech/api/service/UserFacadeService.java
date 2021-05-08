@@ -1,6 +1,7 @@
 package com.miaotech.api.service;
 
 import com.miaotech.api.dto.UserDTO;
+import com.miaotech.api.dto.UserRegisterDTO;
 
 public interface UserFacadeService {
 
@@ -16,5 +17,5 @@ public interface UserFacadeService {
      * 注册一个用户
      * @param userDTO
      */
-    void register(UserDTO userDTO);
+    void register(UserRegisterDTO userDTO);
 }

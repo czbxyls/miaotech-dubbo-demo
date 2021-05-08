@@ -51,6 +51,7 @@ subprojects {
         set('springDependencyVersion', '1.0.10.RELEASE')
         set('logbackVersion', '1.2.3')
         set('sentinelVersion', '1.8.0')
+        set('validationVersion', '2.0.2')
         //set('codecVersion', '1.15')
     }
 

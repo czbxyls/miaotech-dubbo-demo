@@ -1,4 +1,4 @@
-package com.miaotech.common.utils;
+package com.miaotech.common.aspect;
 
 import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
@@ -9,7 +9,7 @@ import java.lang.reflect.Method;
 
 @Slf4j
 @Configuration
-public class MKeyGenerator {
+public class AopKeyGenerator {
 
     /**
      * Generate key based on {method name + parameter list} and md5 conversion

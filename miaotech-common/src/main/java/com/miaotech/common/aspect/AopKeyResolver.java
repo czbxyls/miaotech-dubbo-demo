@@ -1,4 +1,4 @@
-package com.miaotech.common.utils;
+package com.miaotech.common.aspect;
 
 import com.miaotech.common.idempotent.Idempotent;
 import org.aspectj.lang.JoinPoint;
@@ -12,7 +12,8 @@ import org.springframework.expression.spel.support.StandardEvaluationContext;
 import java.lang.reflect.Method;
 
 @Configuration
-public class MKeyResolver {
+public class AopKeyResolver {
+
     private static final SpelExpressionParser PARSER = new SpelExpressionParser();
 
     private static final LocalVariableTableParameterNameDiscoverer DISCOVERER = new LocalVariableTableParameterNameDiscoverer();

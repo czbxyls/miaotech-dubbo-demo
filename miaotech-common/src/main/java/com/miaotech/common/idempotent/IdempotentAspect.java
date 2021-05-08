@@ -3,8 +3,8 @@ package com.miaotech.common.idempotent;
 import com.miaotech.common.MsgException;
 import com.miaotech.common.cache.RedisUtil;
 import com.miaotech.common.result.ResultEnum;
-import com.miaotech.common.utils.MKeyResolver;
-import com.miaotech.common.utils.MKeyGenerator;
+import com.miaotech.common.aspect.AopKeyResolver;
+import com.miaotech.common.aspect.AopKeyGenerator;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
@@ -44,10 +44,10 @@ public class IdempotentAspect {
     private RedisUtil redisUtil;
 
     @Autowired
-    private MKeyResolver mKeyResolver;
+    private AopKeyResolver aopKeyResolver;
 
     @Autowired
-    private MKeyGenerator mKeyGenerator;
+    private AopKeyGenerator aopKeyGenerator;
 
     @Pointcut("@annotation(com.miaotech.common.idempotent.Idempotent)")
     public void pointCut() {
@@ -66,11 +66,11 @@ public class IdempotentAspect {
         Class klass = signature.getClass();
         // 若没有配置 幂等 标识编号，则使用 类名 + 方法名 + 参数列表作为区分
         if (StringUtils.isEmpty(idempotent.key())) {
-            key = String.format(KEY_TEMPLATE, mKeyGenerator.generate(method, joinPoint.getArgs()));
+            key = String.format(KEY_TEMPLATE, aopKeyGenerator.generate(method, joinPoint.getArgs()));
         }
         else {
             // 使用jstl 规则区分
-            key = String.format(KEY_TEMPLATE, mKeyResolver.resolver(idempotent.key(), method, joinPoint.getArgs()));
+            key = String.format(KEY_TEMPLATE, aopKeyResolver.resolver(idempotent.key(), method, joinPoint.getArgs()));
         }
 
         long ttl = idempotent.timeout();
