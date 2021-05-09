@@ -1,5 +1,6 @@
 package com.miaotech.api.service;
 
+import com.miaotech.api.dto.CollectUrlDTO;
 import com.miaotech.api.dto.CollectionDTO;
 import com.miaotech.api.dto.HotCollectionDTO;
 
@@ -20,12 +21,26 @@ public interface CollectionFacadeService {
      * （此用例用来测试基于nacos的配置中心）
      * @return
      */
-    public int getMaxCollectionLimit();
+    int getMaxCollectionLimit();
 
 
     /**
-     *
+     * 获取热门收藏
      * @return
      */
     List<HotCollectionDTO> getHotCollections();
+
+    /**
+     * 收藏一个网页
+     * @param userId
+     * @param url
+     */
+    void collect(int userId, CollectUrlDTO url);
+
+    /**
+     * 浏览一个网页
+     * @param collectId
+     */
+    void view(int collectId);
+
 }
