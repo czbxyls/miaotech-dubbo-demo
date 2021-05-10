@@ -15,7 +15,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @Configuration
 //配置文件读取是否启用此配置
-@ConditionalOnProperty(value = "scheduling.enable", matchIfMissing = false)
+@ConditionalOnProperty(value = "server.scheduling.enable", matchIfMissing = false)
 //启用定时任务
 @EnableScheduling
 public class ServerTaskConfig {

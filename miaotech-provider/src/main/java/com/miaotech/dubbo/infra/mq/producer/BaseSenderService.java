@@ -1,20 +1,13 @@
 package com.miaotech.dubbo.infra.mq.producer;
 
-import com.alibaba.cloud.stream.binder.rocketmq.RocketMQMessageChannelBinder;
 import com.miaotech.dubbo.infra.mq.MQConst;
-import com.miaotech.dubbo.infra.mq.MQSource;
 import org.apache.commons.lang.StringUtils;
 import org.apache.rocketmq.common.message.MessageConst;
-import org.apache.rocketmq.spring.support.RocketMQHeaders;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.MessageHeaders;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.util.MimeTypeUtils;
-
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class BaseSenderService {
 

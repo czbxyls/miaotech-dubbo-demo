@@ -2,6 +2,7 @@ package com.miaotech.dubbo.infra.mq.producer;
 
 import com.miaotech.dubbo.infra.mq.MQSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;

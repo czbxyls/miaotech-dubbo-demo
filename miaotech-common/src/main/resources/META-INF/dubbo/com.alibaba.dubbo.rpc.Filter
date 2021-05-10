@@ -1,1 +1,2 @@
 exception2=com.miaotech.common.filter.ExceptionFilter
+accesslog2=com.miaotech.common.filter.AccessLogFilter
