@@ -1,8 +1,8 @@
 package com.miaotech.dubbo.app.service;
 
 import com.miaotech.api.command.UserLoginCommand;
-import com.miaotech.api.dto.UserInfoDTO;
 import com.miaotech.api.command.UserRegisterCommand;
+import com.miaotech.api.dto.UserInfoDTO;
 import com.miaotech.api.service.UserFacadeService;
 import com.miaotech.common.converter.GeneralConvertor;
 import com.miaotech.common.dlock.DLock;

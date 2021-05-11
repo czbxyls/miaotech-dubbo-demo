@@ -1,31 +1,28 @@
 package com.miaotech.dubbo.domain.service;
 
 import com.miaotech.api.command.UserRegisterCommand;
-import com.miaotech.common.MsgException;
 import com.miaotech.dubbo.domain.entity.User;
-import com.miaotech.dubbo.domain.repo.UserRepository;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-@Service
-public class UserDomainService {
+public interface UserDomainService {
 
-    @Autowired
-    private UserRepository userRepository;
+    /**
+     * 查找一个用户信息
+     * @param userId
+     * @return
+     */
+    public User findUser(Integer userId);
 
-    public User findUser(Integer userId) {
-        return userRepository.findUser(userId);
-    }
+    /**
+     * 用户登录
+     * @param username
+     * @param password
+     * @return
+     */
+    int login(String username, String password);
 
-    public void register(UserRegisterCommand userDTO) {
-
-    }
-
-    public int login(String username, String password) {
-        User user = userRepository.findUser(username);
-        if(user == null) throw MsgException.newMessageException("用户名或密码错误! 请重试");
-        if(!StringUtils.equals(user.getPassword(), password)) throw MsgException.newMessageException("用户名或密码错误! 请重试");
-        return user.getId();
-    }
+    /**
+     * 用户注册
+     * @param userDTO
+     */
+    void register(UserRegisterCommand userDTO);
 }
