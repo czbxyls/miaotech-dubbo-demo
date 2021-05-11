@@ -1,17 +1,17 @@
 package com.miaotech.web.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.miaotech.api.dto.UserDTO;
-import com.miaotech.api.dto.UserRegisterDTO;
+import com.miaotech.api.command.UserLoginCommand;
+import com.miaotech.api.dto.UserInfoDTO;
+import com.miaotech.api.command.UserRegisterCommand;
 import com.miaotech.api.service.UserFacadeService;
-import com.miaotech.web.ResponseExceptionAdvice;
+import com.miaotech.web.common.auth.LoginSession;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboReference;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
@@ -21,22 +21,27 @@ public class UserController  {
     @DubboReference
     private UserFacadeService userFacadeService;
 
+    @Autowired
+    LoginSession loginSession;
+
+    @RequiresPermissions("user:admin")
     @RequestMapping("findUser/{userId}")
-    public UserDTO findUser(@PathVariable Integer userId) {
-        UserDTO userDTO = userFacadeService.find(userId);
-        log.info("user={}", JSON.toJSONString(userDTO));
-        return userDTO;
+    public UserInfoDTO findUser(@PathVariable Integer userId) {
+        UserInfoDTO userInfoDTO = userFacadeService.find(userId);
+        log.info("user={}", JSON.toJSONString(userInfoDTO));
+        return userInfoDTO;
     }
 
     @PostMapping("register")
-    public void register(@Validated UserRegisterDTO user) {
-        log.info("register userDTO={}", user);
+    public void register(@Validated UserRegisterCommand user) {
+        log.info("register user={}", user);
         userFacadeService.register(user);
     }
 
-    @RequestMapping("echo/{text}")
-    public String echo(@PathVariable String text) {
-        log.info("echo text={}", text);
-        return "echo 3: " +  text;
+
+    @RequestMapping("login")
+    public String login(@Validated UserLoginCommand user){
+        log.info("login user={}", user);
+        return loginSession.saveToken(userFacadeService.login(user));
     }
 }

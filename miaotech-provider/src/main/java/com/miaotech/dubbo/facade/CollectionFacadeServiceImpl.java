@@ -43,15 +43,15 @@ public class CollectionFacadeServiceImpl implements CollectionFacadeService {
         return generalConvertor.convertor(collectionService.getHotCollections(10), HotCollectionDTO.class);
     }
 
-    @Autowired
-    private CollectSenderService collectSenderService;
+//    @Autowired
+//    private CollectSenderService collectSenderService;
 
     @Override
     public void collect(int userId, CollectUrlDTO url) {
         //判断收藏数是否超过限制
         //新增收藏数
         //新增已一个下载消息给消息队列：下载网页，获取摘要信息等
-        collectSenderService.sendObject(url);
+        //collectSenderService.sendObject(url);
     }
 
     @Override
@@ -61,7 +61,7 @@ public class CollectionFacadeServiceImpl implements CollectionFacadeService {
         collectionDTO.setUrl("https://www.google.com");
         collectionDTO.setUserId(3);
         collectionDTO.setViewCount(100);
-        collectSenderService.sendObject(collectionDTO);
+        //collectSenderService.sendObject(collectionDTO);
     }
 
 

@@ -1,6 +1,7 @@
 package com.miaotech.dubbo.infra.db.impl;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.miaotech.dubbo.domain.entity.User;
@@ -16,4 +17,10 @@ public class UserRepositoryImpl extends ServiceImpl<UserMapper, User> implements
         return baseMapper.selectById(userId);
     }
 
+    @Override
+    public User findUser(String username) {
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("username", username).or().eq("phone", username);
+        return baseMapper.selectOne(queryWrapper);
+    }
 }

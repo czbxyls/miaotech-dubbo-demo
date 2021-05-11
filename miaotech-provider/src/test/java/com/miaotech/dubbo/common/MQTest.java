@@ -8,16 +8,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 
 public class MQTest extends BaseTest {
-    @Autowired
-    private CollectSenderService collectSenderService;
-
-    @Test
-    public void sendTest() throws InterruptedException {
-        CollectUrlDTO collectUrlDTO = new CollectUrlDTO();
-        collectUrlDTO.setUrl("https://www.baidu.com");
-
-        collectSenderService.sendObject(collectUrlDTO);
-
-        Thread.sleep(1000L);
-    }
+//    @Autowired
+//    private CollectSenderService collectSenderService;
+//
+//    @Test
+//    public void sendTest() throws InterruptedException {
+//        CollectUrlDTO collectUrlDTO = new CollectUrlDTO();
+//        collectUrlDTO.setUrl("https://www.baidu.com");
+//
+//        collectSenderService.sendObject(collectUrlDTO);
+//
+//        Thread.sleep(1000L);
+//    }
 }

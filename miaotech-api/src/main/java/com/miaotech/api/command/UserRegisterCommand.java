@@ -1,4 +1,4 @@
-package com.miaotech.api.dto;
+package com.miaotech.api.command;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,7 +8,7 @@ import java.util.Date;
 
 @NoArgsConstructor
 @Data
-public class UserRegisterDTO implements java.io.Serializable {
+public class UserRegisterCommand implements java.io.Serializable {
 
     //用户名正则，4到16位（字母，数字，下划线，减号）
     @NotBlank(message = "用户名不能为空")

@@ -7,7 +7,7 @@ import java.util.Date;
 
 @NoArgsConstructor
 @Data
-public class UserDTO implements java.io.Serializable {
+public class UserInfoDTO implements java.io.Serializable {
 
     private Integer userId;
 

@@ -1,7 +1,7 @@
 package com.miaotech.dubbo.common;
 
 import com.alibaba.fastjson.JSON;
-import com.miaotech.api.dto.UserDTO;
+import com.miaotech.api.dto.UserInfoDTO;
 import com.miaotech.common.converter.GeneralConvertor;
 import com.miaotech.common.utils.TimeUtils;
 import com.miaotech.dubbo.BaseTest;
@@ -35,8 +35,8 @@ public class GeneralConvertorTest extends BaseTest {
      */
     @Test
     public void userConverterTest() {
-        UserDTO userDTO = convertor.convertor(user, UserDTO.class);
-        System.out.println(JSON.toJSONString(userDTO));
-        Assertions.assertThat(userDTO.getUserId()).isEqualTo(user.getId());
+        UserInfoDTO userInfoDTO = convertor.convertor(user, UserInfoDTO.class);
+        System.out.println(JSON.toJSONString(userInfoDTO));
+        Assertions.assertThat(userInfoDTO.getUserId()).isEqualTo(user.getId());
     }
 }

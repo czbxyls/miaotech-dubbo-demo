@@ -515,4 +515,14 @@ public class RedisUtil {
         }
     }
 
+
+    public Set<String> keys(String pattern) {
+        try {
+            Set<String> keys = redisTemplate.keys(pattern);
+            return keys;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

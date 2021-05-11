@@ -103,7 +103,6 @@ public class CommonUtils {
 		return parseLong(data, 0L);
 	}
 	
-	@Deprecated
 	public static long parseLong(Object data, int def) {
 		return parseLong(data, (long) def);
 	}
@@ -373,25 +372,6 @@ public class CommonUtils {
 			content = m.replaceAll(entry.getValue());
 		}
 		return content;
-	}
-
-	/**
-	 * 兼容旧数据
-	 * @param str
-	 * @return
-	 */
-	@Deprecated
-	public static String replaceHref(String str) {
-		if (str == null)
-			return null;
-		String firstStr = "<a href='/invest/a", lastStr = ".html' target=_blank>";
-		String firstReplace = "<a href='/invest-page.html?id=", lastReplace = "' target=_blank>";
-		int first = str.indexOf(firstStr);
-		if (first >= 0) {
-			str = str.replaceAll(firstStr, firstReplace);
-			str = str.replaceAll(lastStr, lastReplace);
-		}
-		return str;
 	}
 	
 	

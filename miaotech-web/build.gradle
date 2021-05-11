@@ -27,6 +27,9 @@ dependencies {
     implementation "org.apache.dubbo:dubbo:${dubboVersion}"
     implementation "com.alibaba.nacos:nacos-client:${nacosVersion}"
 
+    implementation "org.apache.shiro:shiro-spring:${shiroVersion}"
+    implementation "com.auth0:java-jwt:${jwtVersion}"
+
     compile project(":miaotech-common")
     compile project(":miaotech-api")
 

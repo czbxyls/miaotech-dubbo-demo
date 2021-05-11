@@ -52,7 +52,8 @@ subprojects {
         set('logbackVersion', '1.2.3')
         set('sentinelVersion', '1.8.0')
         set('validationVersion', '2.0.2')
-        //set('codecVersion', '1.15')
+        set('jwtVersion', '3.8.3')
+        set('shiroVersion', '1.7.0')
     }
 
     dependencies {
