@@ -1,4 +1,4 @@
-package com.miaotech.dubbo.facade;
+package com.miaotech.dubbo.app.service;
 
 import com.miaotech.api.command.UserLoginCommand;
 import com.miaotech.api.dto.UserInfoDTO;
@@ -6,8 +6,7 @@ import com.miaotech.api.command.UserRegisterCommand;
 import com.miaotech.api.service.UserFacadeService;
 import com.miaotech.common.converter.GeneralConvertor;
 import com.miaotech.common.dlock.DLock;
-import com.miaotech.common.idempotent.Idempotent;
-import com.miaotech.dubbo.app.UserService;
+import com.miaotech.dubbo.domain.service.UserDomainService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class UserFacadeServiceImpl implements UserFacadeService {
 
     @Autowired
-    UserService userService;
+    UserDomainService userDomainService;
 
     @Autowired
     GeneralConvertor generalConvertor;
@@ -26,7 +25,7 @@ public class UserFacadeServiceImpl implements UserFacadeService {
     //@Idempotent(timeout = 20, info = "这只是用来测试Idempotent：请勿重复查询")
     public UserInfoDTO find(Integer userId) {
         log.info("find userId {}", userId);
-        return generalConvertor.convertor(userService.findUser(userId), UserInfoDTO.class);
+        return generalConvertor.convertor(userDomainService.findUser(userId), UserInfoDTO.class);
     }
 
     @Override
@@ -42,6 +41,6 @@ public class UserFacadeServiceImpl implements UserFacadeService {
 
     @Override
     public int login(UserLoginCommand user) {
-        return userService.login(user.getUsername(), user.getPassword());
+        return userDomainService.login(user.getUsername(), user.getPassword());
     }
 }

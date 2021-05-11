@@ -11,6 +11,12 @@ import java.util.List;
 
 @Mapper
 public interface CollectionMapper extends BaseMapper<Collection> {
+
+    /**
+     * 获取热门收藏列表
+     * @param size 列表大小
+     * @return
+     */
     @Select("SELECT url, sum(view_count) viewCount FROM t_collection GROUP BY url ORDER BY viewCount DESC LIMIT #{size}")
     List<HotCollection> selectHotCollections(@Param("size") int size);
 }

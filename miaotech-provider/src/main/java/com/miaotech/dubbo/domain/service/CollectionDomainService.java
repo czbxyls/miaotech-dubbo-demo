@@ -1,6 +1,5 @@
-package com.miaotech.dubbo.app.impl;
+package com.miaotech.dubbo.domain.service;
 
-import com.miaotech.dubbo.app.CollectionService;
 import com.miaotech.dubbo.domain.repo.CollectionRepository;
 import com.miaotech.dubbo.domain.valueobject.HotCollection;
 import lombok.extern.slf4j.Slf4j;
@@ -12,12 +11,10 @@ import java.util.List;
 
 @Slf4j
 @Service
-public class CollectionServiceImpl implements CollectionService  {
+public class CollectionDomainService {
 
-    @Autowired
     private CollectionRepository collectionRepository;
 
-    @Cacheable(cacheNames = "cache_HotCollection", key="'hc_' + #size")
     public List<HotCollection> getHotCollections(int size) {
         log.info("read data from repository!");
         return collectionRepository.getHotCollections(size);

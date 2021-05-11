@@ -1,4 +1,4 @@
-package com.miaotech.dubbo.infra.mq.consumer;
+package com.miaotech.dubbo.app.event.consumer;
 
 import com.alibaba.fastjson.JSON;
 import com.miaotech.api.dto.CollectUrlDTO;

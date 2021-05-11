@@ -1,6 +1,7 @@
-package com.miaotech.dubbo.infra.mq.producer;
+package com.miaotech.dubbo.app.event.producer;
 
 import com.miaotech.dubbo.infra.mq.MQSource;
+import com.miaotech.dubbo.infra.mq.producer.BaseSenderService;
 import org.apache.rocketmq.common.message.MessageConst;
 import org.apache.rocketmq.spring.support.RocketMQHeaders;
 import org.springframework.beans.factory.annotation.Autowired;
