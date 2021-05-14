@@ -1,8 +1,8 @@
 package com.miaotech.api.service;
 
-import com.miaotech.api.command.UserLoginCommand;
+import com.miaotech.api.command.UserLoginCmd;
 import com.miaotech.api.dto.UserInfoDTO;
-import com.miaotech.api.command.UserRegisterCommand;
+import com.miaotech.api.command.UserRegisterCmd;
 
 public interface UserFacadeService {
 
@@ -18,12 +18,12 @@ public interface UserFacadeService {
      * 注册一个用户
      * @param userDTO
      */
-    void register(UserRegisterCommand userDTO);
+    void register(UserRegisterCmd userDTO);
 
 
     /**
      * 用户登录校验
      * @param user
      */
-    int login(UserLoginCommand user);
+    int login(UserLoginCmd user);
 }

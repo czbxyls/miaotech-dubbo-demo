@@ -1,9 +1,9 @@
 package com.miaotech.web.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.miaotech.api.command.UserLoginCommand;
+import com.miaotech.api.command.UserLoginCmd;
 import com.miaotech.api.dto.UserInfoDTO;
-import com.miaotech.api.command.UserRegisterCommand;
+import com.miaotech.api.command.UserRegisterCmd;
 import com.miaotech.api.service.UserFacadeService;
 import com.miaotech.web.common.auth.LoginSession;
 import lombok.extern.slf4j.Slf4j;
@@ -33,14 +33,14 @@ public class UserController  {
     }
 
     @PostMapping("register")
-    public void register(@Validated UserRegisterCommand user) {
+    public void register(@Validated UserRegisterCmd user) {
         log.info("register user={}", user);
         userFacadeService.register(user);
     }
 
 
     @RequestMapping("login")
-    public String login(@Validated UserLoginCommand user){
+    public String login(@Validated UserLoginCmd user){
         log.info("login user={}", user);
         return loginSession.saveToken(userFacadeService.login(user));
     }

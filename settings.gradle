@@ -1,7 +1,8 @@
 rootProject.name = 'miaotech-dubbo-demo'
 include 'miaotech-common'
 include 'miaotech-api'
-include 'miaotech-provider'
+include 'miaotech-user-provider'
 include 'miaotech-web'
-
+include 'miaotech-order-provider'
+include 'miaotech-autogenerator'
 

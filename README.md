@@ -8,25 +8,37 @@
  * Infrastructure
 
 组件
-* Shiro + Jwt 支持登录验证
-* Spring Schedule 定时任务
-* Redis 缓存
-* Mysql 数据库
-* Nacos 配置中心和注册中心
-* Sentinel 限流 
-* dubbo RPC
-* SpringBoot Web层
-* Spring Cloud Stream + RocketMQ 异步消息
+* Web接入 => SpringBoot
+    + Restful
+    + 安全认证
+      + Shiro + Jwt
+* RPC dubbo
+    + nacos注册中心
+* 消息队列 RocketMQ
+    + Spring Cloud Stream
+* 任务调度
+  + Spring Schedule
+* 缓存 Redis
+    + Lettuce
+  + spring integration
+* 数据库 Mysql
+  + MyBatis 
+  + MyBatis Plus
+* 配置中心 Nacos
+* 限流 Sentinel
 
-自定义实现
+
+自定义实现组件
 * Idempotent 幂等
 * DLock 分布式锁
 * 分布式ID: 基于Snowflake
 
-优化
+通用处理
 * 异常统一处理
 * 结果统一返回
-* Dubbo AccessLog提供调用时间和返回值
+* Dubbo AccessLog 访问日志，计算调用时间和返回值
+* Dozer实现DO、DTO、VO等相互转化
+* SpringBoot Validator数据校验
 
 包管理
 * Gradle

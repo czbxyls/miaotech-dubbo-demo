@@ -18,4 +18,5 @@ dependencies {
     //Spring Integration是Spring框架创建的一个API，面向企业应用集成（EAI）
     implementation 'org.springframework.boot:spring-boot-starter-integration'
     implementation 'org.springframework.integration:spring-integration-redis'
+
 }

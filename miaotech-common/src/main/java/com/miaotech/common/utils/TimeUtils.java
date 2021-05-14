@@ -189,11 +189,7 @@ public class TimeUtils {
 	public static String yyyyMMddChianise(Date date) {
 		return yyyyMMddChianiseFormatter().format(date) ;
 	}
-	public static void main(String[] args) {
-		Date now = newDateByUnixTimestamp(1385027819) ;
-		System.out.println(TimeUtils.yyyyMMdd(now));
-	}
-	
+
 	public static Date newDateByUnixTimestamp(String timestamp) {
 		timestamp = CommonUtils.emptyIfNull(timestamp) ;
 		if(timestamp.isEmpty()) return null ;
@@ -464,4 +460,10 @@ public class TimeUtils {
 		}
 		return "";
 	}
+
+	public static void main(String[] args) {
+		Date now = newDateByUnixTimestamp(1385027819) ;
+		System.out.println(TimeUtils.yyyyMMdd(now));
+	}
+
 }

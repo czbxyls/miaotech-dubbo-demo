@@ -71,6 +71,7 @@ public class ShiroConfig {
         LinkedHashMap<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
         //放行请求!!!!!!!
         filterChainDefinitionMap.put("/user/login", "anon");
+        filterChainDefinitionMap.put("/user/register", "anon");
         filterChainDefinitionMap.put("/echo/**", "anon");
 
         //拦截剩下的其他请求
